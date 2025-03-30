@@ -1,0 +1,212 @@
+import reactDom from "./reactdom.png";
+
+Lets start with knowing ReactJs first
+
+## About ReactJs
+
+React is a javascript framework developed by Facebook for building user interfaces.
+Its very simple, allows writing reusable components, works with virtual DOM, and is very fast.
+
+React revolutionized the way we build user interfaces and is now the most popular front-end library in the world.
+
+# Components
+
+React uses virtual DOM to update the view efficiently.
+It creates a virtual DOM in memory and compares it with the actual DOM to update only the changed parts.
+Its easier and faster to manipulate javascript objects than the actual DOM.
+
+React uses a component based architecture and the components are written in JSX or
+Javascript XML a syntax extension of javascript. Browsers do not understand JSX thus transpiler are used to convert JSX to javascript.
+
+it looks like this
+
+```jsx {3-6}
+const App = () => {
+  return (
+    <div>
+      <h1>Hello World</h1>
+      <p>How are you</p>
+    </div>
+  );
+};
+```
+
+This is a functional component in React. A function can only return a single value in javascript,
+A return statement cannot return multiple values. Thus we wrap all the elements in a single div.
+
+This is how the object notation of the above code looks like
+
+```js
+const appElement = {
+  type: "div", // describes type of element
+  ref: null, // reference to the actual DOM node
+  key: null, // unique key for the element
+  "$$typeof": Symbol.for("react.element"), // important security feature
+  props: {
+    children: [
+      {
+        type: "h1",
+        ref: null,
+        key: null,
+        props: {
+          children: "Hello World",
+        },
+      },
+      {
+        type: "p",
+        ref: null,
+        key: null,
+        props: {
+          children: "How are you",
+        },
+      },
+    ],
+  },
+};
+```
+
+Everything is self explanatory the key, the type, the ref but the `"$$typeof"` is a special property
+used internally by React to identify objects as React elements.
+This property helps React distinguish between its own elements and other objects that may be used in JavaScript applications.
+
+And `Symbol` is a javascript primitive data type and is used to create unique values.
+
+It \* uniquely identifies the object and is also used to prevent cross-site scripting attacks by ensuring only objects
+created through React.createElement or JSX are processed as React element.
+
+This mechanism prevents attackers from injecting arbitrary objects into the React component tree that could be interpreted as executable code or scripts.
+
+# Virtual DOM
+
+DOM or Document Object Model is a tree-like structure that represents the HTML document.
+React uses a virtual DOM to update the view efficiently.
+It creates a virtual DOM in memory and compares it with the actual DOM to update only the changed parts.
+Its faster to edit virtual DOM than changing the UI of actual DOM directly.
+
+The DOM is in the form of a tree structure and each element is a node in the tree.
+Editing the real DOM is slow because it causes a lot of performance issue.
+
+That is why React uses a virtual DOM to update the view efficiently. The virtual DOM is in the form of the real DOM
+but in object notation and it is very easy to manipulate objects.
+
+<Image src={reactDom} />
+React compares the virtual DOM and only the final change is updated to the actual
+DOM this process of building the virtual DOM and comparing what part of the tree
+needs to be replaced is called `Reconciliation`.
+
+Just imagine you are editing the DOM on a loop, how much performance issue will it cause
+if we had to update the actual DOM on every change. React solves the problem by executing the operations on the virtual
+DOM and the final change is passed to the actual DOM.
+
+# Reconciliation
+
+The process of comparing virtual DOM and updating the actual DOM is called reconciliation.
+
+#### Diffing algorithm
+
+Diffing algorithm is the heart of the reconciliation process.
+It operates on two trees (the new virtual DOM tree and the old virtual DOM tree) and tries to
+find the minimum number of operations required to transform the old tree into the new tree.
+
+#### Updating the DOM
+
+Say you changed the layout from
+
+```jsx
+// Before
+<ul>
+  <li>One</li>
+  <li>Two</li>
+</ul>
+```
+
+```jsx {5}
+// After
+<ul>
+  <li>One</li>
+  <li>Two</li>
+  <li>Three</li>
+</ul>
+```
+
+What happens is react checks the elements and sees oh `One` matches lets not touch that, `Two` matches
+lets not touch that, but `Three` is new lets add that to the DOM.
+
+Simple right?
+
+#### Lets look at another example
+
+```jsx
+// Before
+<ul>
+  <li>One</li>
+  <li>Two</li>
+</ul>
+```
+
+```jsx {3}
+// After
+<ul>
+  <li>Zero</li>
+  <li>One</li>
+  <li>Two</li>
+</ul>
+```
+
+React goes like, Hmm `Zero` doesn't match with `One` Lets change that, `One` doesn't match with `Two`
+lets change that too, `Two` doesn't exist here lets add that. React doesn't know that `One` and `Two` are same.
+
+It has to be updated 3 times, but why? I only changed 1 element, can I make it more efficient?
+
+Yes you can, by adding a `key` to the elements. React uses the key to identify the elements and update only the changed parts.
+
+#### Using keys
+
+```jsx
+// Before
+<ul>
+  <li key="one">One</li>
+  <li key="two">Two</li>
+</ul>
+```
+
+```jsx {3}
+// After
+<ul>
+  <li key="zero">Zero</li>
+  <li key="one">One</li>
+  <li key="two">Two</li>
+</ul>
+```
+
+So now react compares, woah the elements with keys `one` and `two` are same, lets not touch them,
+but `zero` is new lets add that.
+
+Thats the difference between [Reconciliation with keys](/blog/react/how-reactJs-works#lets-look-at-another-example)
+and [Reconciliation without keys](/blog/react/how-reactJs-works#using-keys).
+
+Lets look another example, When mapping over items in an array we often put the key as the index.
+
+```jsx
+data.map((item, index) => (
+    <li key={index}>{item.name}</li>
+));
+```
+
+While this works, its not recommended to use the index as the key because if the array changes the index changes.
+So even if you have the same set of elements, React will update the DOM because the key has changed.
+
+Whats recommended if possible is to use a unique identifier as the key.
+
+```jsx
+data.map((item, index) => (
+    <li key={item.id}>{item.name}</li>
+));
+```
+
+If that feels interesting you can read more about [Stack and Fiber Reconciler](https://medium.com/the-tech-collective/react-fiber-a-tale-of-two-reconcilers-8e1d2cfeb2b2)
+and why we moved from Stack Reconciler to Fiber Reconciler.
+
+Thats it, Now you know how React works. Hope you have learned something new today. Thank you for reading.
+
+Adios Amigos 👋.
