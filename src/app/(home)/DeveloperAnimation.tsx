@@ -28,13 +28,11 @@ const DeveloperAnimation: React.FC = () => {
     { number: 14, content: <span></span> },
     { number: 15, content: <span>&nbsp;&nbsp;<span className="text-yellow-200">deployToProduction</span>(): <span className="text-yellow-200">void</span> {'{'}</span> },
     { number: 16, content: <span>&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">// Launch the project to the world</span></span> },
-    { number: 17, content: <span>&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-blue-400">this</span>.<span className="text-blue-200">projects</span>.forEach(<span className="text-blue-200">project</span> => {'{'}</span> },
-    { number: 18, content: <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-blue-200">project</span>.<span className="text-yellow-200">build</span>();</span> },
-    { number: 19, content: <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-blue-200">project</span>.<span className="text-yellow-200">test</span>();</span> },
-    { number: 20, content: <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-blue-200">project</span>.<span className="text-yellow-200">deploy</span>();</span> },
-    { number: 21, content: <span>&nbsp;&nbsp;&nbsp;&nbsp;{'}'});</span> },
-    { number: 22, content: <span>&nbsp;&nbsp;{'}'}</span> },
-    { number: 23, content: <span>{'}'}</span> },
+    { number: 17, content: <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-blue-200">project</span>.<span className="text-yellow-200">build</span>();</span> },
+    { number: 18, content: <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-blue-200">project</span>.<span className="text-yellow-200">test</span>();</span> },
+    { number: 19, content: <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-blue-200">project</span>.<span className="text-yellow-200">deploy</span>();</span> },
+    { number: 20, content: <span>&nbsp;&nbsp;{'}'}</span> },
+    { number: 21, content: <span>{'}'}</span> },
   ];
   
   useEffect(() => {
