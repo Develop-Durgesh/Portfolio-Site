@@ -12,7 +12,7 @@ const DeveloperAnimation: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState<boolean>(false);
   
   const codeLines: CodeLine[] = [
-    { number: 1, content: <span className="text-green-400">// Building something amazing</span> },
+    { number: 1, content: <span className="text-green-400">{"//"} Building something amazing</span> },
     { number: 2, content: <span><span className="text-blue-400">class</span> <span className="text-teal-300">DevelopmentJourney</span> {'{'}</span> },
     { number: 3, content: <span>&nbsp;&nbsp;<span className="text-blue-400">constructor</span>(<span className="text-blue-200">passion</span>: <span className="text-yellow-200">string</span>, <span className="text-blue-200">skills</span>: <span className="text-yellow-200">string[]</span>) {'{'}</span> },
     { number: 4, content: <span>&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-blue-400">this</span>.<span className="text-blue-200">passion</span> = <span className="text-blue-200">passion</span>;</span> },
@@ -27,7 +27,7 @@ const DeveloperAnimation: React.FC = () => {
     { number: 13, content: <span>&nbsp;&nbsp;{'}'}</span> },
     { number: 14, content: <span></span> },
     { number: 15, content: <span>&nbsp;&nbsp;<span className="text-yellow-200">deployToProduction</span>(): <span className="text-yellow-200">void</span> {'{'}</span> },
-    { number: 16, content: <span>&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">// Launch the project to the world</span></span> },
+    { number: 16, content: <span>&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-green-400">{"//"} Launch the project to the world</span></span> },
     { number: 17, content: <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-blue-200">project</span>.<span className="text-yellow-200">build</span>();</span> },
     { number: 18, content: <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-blue-200">project</span>.<span className="text-yellow-200">test</span>();</span> },
     { number: 19, content: <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span className="text-blue-200">project</span>.<span className="text-yellow-200">deploy</span>();</span> },
