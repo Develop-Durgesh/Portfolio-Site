@@ -26,7 +26,7 @@ const About = () => {
           </p>
           <div className="flex flex-row justify-center items-end mt-4 w-full h-full">
             <a
-              href="https://drive.google.com/file/d/1EP42hvYh3V8myaDY8n7CEtffX0w1ktUy/view?usp=sharing"
+              href="https://drive.google.com/file/d/1oldaEuhtcu2E5TB9IERiaN-JvIfUuzw_/view?usp=sharing"
               className="bg-[#22c8e5] hover:bg-[#f7345e] mx-auto mt-4 px-4 py-3 rounded-xl font-semibold text-sm text-white md:text-md transition-colors duration-500"
             >
               Download Resume
